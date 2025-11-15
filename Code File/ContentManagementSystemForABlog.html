@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CMS - Professional Content Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Main CMS Interface -->
+    <div class="cms-container">
+        <!-- Sidebar Navigation -->
+        <nav class="cms-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-cube"></i> CMS Pro</h2>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar" class="user-avatar">
+                    <span class="user-name">Admin User</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </li>
+                <li class="menu-item" data-section="pages">
+                    <i class="fas fa-file-alt"></i> Pages
+                </li>
+                <li class="menu-item" data-section="posts">
+                    <i class="fas fa-pencil-alt"></i> Blog Posts
+                </li>
+                <li class="menu-item" data-section="media">
+                    <i class="fas fa-images"></i> Media Library
+                </li>
+                <li class="menu-item" data-section="users">
+                    <i class="fas fa-users"></i> Users
+                </li>
+                <li class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </li>
+                <li class="menu-item" data-section="preview">
+                    <i class="fas fa-eye"></i> Website Preview
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="cms-main">
+            <!-- Top Bar -->
+            <header class="cms-header">
+                <div class="header-actions">
+                    <button class="btn btn--primary" id="create-new-btn">
+                        <i class="fas fa-plus"></i> Create New
+                    </button>
+                    <button class="btn btn--secondary" id="save-all-btn">
+                        <i class="fas fa-save"></i> Save All
+                    </button>
+                    <div class="auto-save-status">
+                        <i class="fas fa-check-circle"></i> Auto-saved
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="cms-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here's what's happening with your website.</p>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="stat-content">
+                            <h3 id="pages-count">2</h3>
+                            <p>Pages</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-pencil-alt"></i></div>
+                        <div class="stat-content">
+                            <h3 id="posts-count">3</h3>
+                            <p>Blog Posts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-images"></i></div>
+                        <div class="stat-content">
+                            <h3 id="media-count">3</h3>
+                            <p>Media Files</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-content">
+                            <h3 id="users-count">2</h3>
+                            <p>Users</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="recent-content">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list" id="recent-activity">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pages Section -->
+            <section id="pages" class="cms-section">
+                <div class="section-header">
+                    <h1>Pages Management</h1>
+                    <button class="btn btn--primary" id="create-page-btn">
+                        <i class="fas fa-plus"></i> Create Page
+                    </button>
+                </div>
+                
+                <div class="content-filters">
+                    <input type="text" class="form-control" id="pages-search" placeholder="Search pages...">
+                    <select class="form-control" id="pages-status-filter">
+                        <option value="">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+
+                <div class="content-list" id="pages-list">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Posts Section -->
+            <section id="posts" class="cms-section">
+                <div class="section-header">
+                    <h1>Blog Posts</h1>
+                    <button class="btn btn--primary" id="create-post-btn">
+                        <i class="fas fa-plus"></i> Create Post
+                    </button>
+                </div>
+                
+                <div class="content-filters">
+                    <input type="text" class="form-control" id="posts-search" placeholder="Search posts...">
+                    <select class="form-control" id="posts-status-filter">
+                        <option value="">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <select class="form-control" id="posts-category-filter">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+
+                <div class="content-list" id="posts-list">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Media Library Section -->
+            <section id="media" class="cms-section">
+                <div class="section-header">
+                    <h1>Media Library</h1>
+                    <button class="btn btn--primary" id="upload-media-btn">
+                        <i class="fas fa-upload"></i> Upload Media
+                    </button>
+                </div>
+                
+                <div class="media-upload-zone" id="media-upload-zone">
+                    <div class="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop files here or click to upload</p>
+                        <input type="file" id="media-file-input" multiple accept="image/*,video/*" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="media-grid" id="media-grid">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="cms-section">
+                <div class="section-header">
+                    <h1>User Management</h1>
+                    <button class="btn btn--primary" id="create-user-btn">
+                        <i class="fas fa-user-plus"></i> Add User
+                    </button>
+                </div>
+                
+                <div class="users-list" id="users-list">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="cms-section">
+                <div class="section-header">
+                    <h1>Website Settings</h1>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label class="form-label">Site Name</label>
+                        <input type="text" class="form-control" id="site-name" value="My Professional Website">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tagline</label>
+                        <input type="text" class="form-control" id="site-tagline" value="Built with Advanced CMS Technology">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Theme</label>
+                        <select class="form-control" id="site-theme">
+                            <option value="professional">Professional</option>
+                            <option value="creative">Creative</option>
+                            <option value="minimal">Minimal</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary" id="save-settings-btn">Save Settings</button>
+                </div>
+            </section>
+
+            <!-- Website Preview Section -->
+            <section id="preview" class="cms-section">
+                <div class="section-header">
+                    <h1>Website Preview</h1>
+                    <div class="preview-controls">
+                        <button class="btn btn--outline preview-device active" data-device="desktop">
+                            <i class="fas fa-desktop"></i> Desktop
+                        </button>
+                        <button class="btn btn--outline preview-device" data-device="tablet">
+                            <i class="fas fa-tablet-alt"></i> Tablet
+                        </button>
+                        <button class="btn btn--outline preview-device" data-device="mobile">
+                            <i class="fas fa-mobile-alt"></i> Mobile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="website-preview" id="website-preview">
+                    <iframe id="preview-frame" src="about:blank"></iframe>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Page Builder Modal -->
+    <div id="page-builder-modal" class="modal hidden">
+        <div class="modal-content page-builder">
+            <div class="modal-header">
+                <h2 id="builder-title">Page Builder</h2>
+                <button class="btn-close" id="close-builder">&times;</button>
+            </div>
+            
+            <div class="builder-container">
+                <!-- Component Palette -->
+                <div class="components-palette">
+                    <h3>Components</h3>
+                    <div class="component-categories">
+                        <div class="category active" data-category="all">All</div>
+                        <div class="category" data-category="text">Text</div>
+                        <div class="category" data-category="media">Media</div>
+                        <div class="category" data-category="layout">Layout</div>
+                        <div class="category" data-category="interactive">Interactive</div>
+                    </div>
+                    <div class="components-list" id="components-list">
+                        <!-- Dynamic components -->
+                    </div>
+                </div>
+
+                <!-- Canvas Area -->
+                <div class="builder-canvas">
+                    <div class="canvas-header">
+                        <select id="template-selector" class="form-control">
+                            <option value="home">Home Page</option>
+                            <option value="page">Standard Page</option>
+                            <option value="blog">Blog Archive</option>
+                            <option value="contact">Contact Page</option>
+                        </select>
+                        <button class="btn btn--secondary" id="preview-page">Preview</button>
+                    </div>
+                    <div class="canvas-area" id="canvas-area">
+                        <div class="drop-zone">
+                            <p>Drag components here to build your page</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Properties Panel -->
+                <div class="properties-panel">
+                    <h3>Properties</h3>
+                    <div class="properties-content" id="properties-content">
+                        <p>Select a component to edit its properties</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="cancel-builder">Cancel</button>
+                <button class="btn btn--primary" id="save-page">Save Page</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Editor Modal -->
+    <div id="post-editor-modal" class="modal hidden">
+        <div class="modal-content post-editor">
+            <div class="modal-header">
+                <h2 id="editor-title">Blog Post Editor</h2>
+                <button class="btn-close" id="close-editor">&times;</button>
+            </div>
+            
+            <div class="editor-container">
+                <div class="editor-main">
+                    <div class="form-group">
+                        <input type="text" class="form-control editor-title-input" id="post-title" placeholder="Enter post title...">
+                    </div>
+                    
+                    <div class="editor-toolbar">
+                        <button class="toolbar-btn" data-command="bold"><i class="fas fa-bold"></i></button>
+                        <button class="toolbar-btn" data-command="italic"><i class="fas fa-italic"></i></button>
+                        <button class="toolbar-btn" data-command="underline"><i class="fas fa-underline"></i></button>
+                        <div class="toolbar-separator"></div>
+                        <button class="toolbar-btn" data-command="heading"><i class="fas fa-heading"></i></button>
+                        <button class="toolbar-btn" data-command="list"><i class="fas fa-list-ul"></i></button>
+                        <button class="toolbar-btn" data-command="link"><i class="fas fa-link"></i></button>
+                        <button class="toolbar-btn" data-command="image"><i class="fas fa-image"></i></button>
+                        <div class="toolbar-separator"></div>
+                        <button class="toolbar-btn" data-command="preview" id="toggle-preview">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                    </div>
+                    
+                    <div class="editor-content">
+                        <div class="editor-textarea" id="post-content" contenteditable="true" placeholder="Start writing your post..."></div>
+                        <div class="editor-preview hidden" id="post-preview"></div>
+                    </div>
+                </div>
+                
+                <div class="editor-sidebar">
+                    <div class="sidebar-section">
+                        <h4>Publish</h4>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" id="post-status">
+                                <option value="draft">Draft</option>
+                                <option value="pending">Pending Review</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Publish Date</label>
+                            <input type="datetime-local" class="form-control" id="post-publish-date">
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Categories</h4>
+                        <div class="categories-list" id="post-categories">
+                            <!-- Dynamic categories -->
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Tags</h4>
+                        <input type="text" class="form-control" id="post-tags" placeholder="Add tags, separated by commas">
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>Featured Image</h4>
+                        <div class="featured-image-selector" id="featured-image-selector">
+                            <button class="btn btn--outline" id="select-featured-image">Select Image</button>
+                            <div class="featured-image-preview hidden" id="featured-image-preview">
+                                <img src="" alt="Featured Image">
+                                <button class="btn btn--sm" id="remove-featured-image">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4>SEO</h4>
+                        <div class="form-group">
+                            <label class="form-label">SEO Title</label>
+                            <input type="text" class="form-control" id="post-seo-title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Meta Description</label>
+                            <textarea class="form-control" id="post-seo-description" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="cancel-post">Cancel</button>
+                <button class="btn btn--outline" id="save-draft">Save Draft</button>
+                <button class="btn btn--primary" id="publish-post">Publish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="loading-indicator hidden" id="loading-indicator">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast hidden" id="notification-toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close">&times;</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
